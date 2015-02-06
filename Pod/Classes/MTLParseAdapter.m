@@ -22,7 +22,6 @@
              @"parseClassName"];
 }
 
-#pragma mark - GGLike
 + (PFObject *)parseObjectFromModel:(MTLModel <MTLJSONSerializing> *)model {
     NSDictionary *params = [MTLJSONAdapter JSONDictionaryFromModel:model];
 
@@ -35,14 +34,16 @@
     PFObject *object = [PFObject objectWithClassName:NSStringFromClass(model.class)
                                           dictionary:params];
 
-    if (parseParams[@"objectId"] != [NSNull null]) {
-        object.objectId = parseParams[@"objectId"];
+    for (NSString *key in parseParams) {
+        if (parseParams[key] != [NSNull null]) {
+            [object setValue:parseParams[key] forKey:key];
+        }
     }
+
 
     return object;
 }
 
-#pragma mark - Private
 + (id)modelOfClass:(Class)modelClass fromParseObject:(PFObject *)object {
     if (!object.isDataAvailable) return nil;
 

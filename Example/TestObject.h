@@ -11,11 +11,13 @@
 @interface TestObject : MTLModel<MTLJSONSerializing>
 
 @property (readwrite, nonatomic, strong) NSString *name;
-
 @property (readwrite, nonatomic, strong) NSNumber *number;
-
 @property (readwrite, nonatomic, assign) NSInteger integerNumber;
-
 @property (readwrite, nonatomic, strong) TestObject *nestedObject;
+
+@property (readwrite, nonatomic, strong) NSString *objectId;
+@property (readwrite, nonatomic, strong) NSDate *createdAt;
+@property (readwrite, nonatomic, strong) NSDate *updatedAt;
+@property (readwrite, nonatomic, strong) NSString *parseClassName;
 
 @end
