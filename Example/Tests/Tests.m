@@ -6,36 +6,47 @@
 //  Copyright (c) 2014 Mike Walker. All rights reserved.
 //
 
-SpecBegin(InitialSpecs)
+#import <MTLParseAdapter/MTLParseAdapter.h>
+#import <Parse/Parse.h>
 
-describe(@"these will fail", ^{
+#import "TestObject.h"
 
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
-    });
+SpecBegin(MTLParseAdapter)
 
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
-    });
-    
-    it(@"will wait and fail", ^AsyncBlock {
-        
-    });
-});
+describe(@"MTLParseAdapter", ^{
+    describe(@"converting a single object", ^{
+        describe(@"converting from a domain object to a Parse object", ^{
+            __block TestObject *object;
+            __block PFObject *parseObject;
 
-describe(@"these will pass", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).beLessThan(23);
-    });
-    
-    it(@"can read", ^{
-        expect(@"team").toNot.contain(@"I");
-    });
-    
-    it(@"will wait and succeed", ^AsyncBlock {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            done();
+            beforeEach(^{
+                object = [[TestObject alloc] init];
+                object.name = @"name";
+                object.number = @5;
+                object.integerNumber = 10;
+                object.nestedObject = [[TestObject alloc] init];
+                object.nestedObject.name = @"name2";
+
+                parseObject = [MTLParseAdapter parseObjectFromModel:object];
+            });
+
+            it(@"should have the same values for core Obj-C datatypes", ^{
+                expect(parseObject[@"name"]).to.equal(@"name");
+            });
+
+            it(@"should respect +JSONKeyPathsByPropertyKey", ^{
+                expect(parseObject[@"number"]).to.beNil;
+                expect(parseObject[@"numberWithDifferentJSONKey"]).to.equal(@5);
+            });
+
+            it(@"should auto-box non-object types", ^{
+                expect(parseObject[@"integerNumber"]).to.equal(@10);
+            });
+
+            it(@"should properly use value transformers", ^{
+                expect(parseObject[@"nestedObject"]).to.beInstanceOf(PFObject.class);
+                expect(parseObject[@"nestedObject"][@"name"]).to.equal(@"name2");
+            });
         });
     });
 });
