@@ -79,6 +79,65 @@ describe(@"MTLParseAdapter", ^{
             });
         });
 
+        describe(@"converting from a Parse object to a domain object", ^{
+            __block TestObject *object;
+            __block PFObject *parseObject;
+
+            beforeEach(^{
+                NSDictionary *params = @{
+                    @"name": @"Dan",
+                    @"numberWithDifferentJSONKey": @8,
+                    @"integerNumber": @9,
+                    @"nestedObject": [PFObject objectWithClassName:@"TestObject"]
+                };
+                parseObject = [PFObject objectWithClassName:@"TestObject"
+                                                 dictionary:params];
+
+                parseObject.objectId = @"objectId";
+
+                object = (TestObject *)[MTLParseAdapter modelOfClass:TestObject.class fromParseObject:parseObject];
+            });
+
+            it(@"should have the same values for core Obj-C datatypes", ^{
+                expect(object.name).to.equal(@"Dan");
+            });
+
+            it(@"should respect +JSONKeyPathsByPropertyKey", ^{
+                expect(object.number).to.equal(@8);
+            });
+
+            it(@"should auto-unbox non-object types", ^{
+                expect(object.integerNumber).to.equal(9);
+            });
+
+            it(@"should properly use value transformers", ^{
+                expect(object.nestedObject).to.beInstanceOf(TestObject.class);
+            });
+
+            context(@"when a property is a special Parse property", ^{
+                it(@"should not be set in the object dictionary", ^{
+                    expect(parseObject[@"objectId"]).to.beNil;
+                    expect(parseObject[@"parseClassName"]).to.beNil;
+                    expect(parseObject[@"createdAt"]).to.beNil;
+                    expect(parseObject[@"updatedAt"]).to.beNil;
+                });
+
+                it(@"should set the appropriate PFObject property", ^{
+                    expect(parseObject.objectId).to.equal(@"objectId");
+                    expect(parseObject.parseClassName).to.equal(@"TestObject");
+                    expect(parseObject.createdAt).to.equal(object.createdAt);
+                    expect(parseObject.updatedAt).to.equal(object.updatedAt);
+                });
+            });
+
+            context(@"when there is no parseClassName set", ^{
+                it(@"should default to the model class name", ^{
+                    TestObject *obj = [[TestObject alloc] init];
+                    PFObject *parseObj = [MTLParseAdapter parseObjectFromModel:obj];
+                    expect(parseObj.parseClassName).to.equal(@"TestObject");
+                });
+            });
+        });
     });
 });
 

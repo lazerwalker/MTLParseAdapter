@@ -52,20 +52,16 @@
         return object[key];
     });
 
-    NSArray *parseValues = ASTMap(self.parseKeys, ^id(id key) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        SEL selector = NSSelectorFromString(key);
-        return [object performSelector:selector];
-#pragma clang diagnostic pop
-    });
+    NSMutableDictionary *mutableParams = [[NSMutableDictionary alloc] initWithObjects:objectValues forKeys:objectKeys];
 
-    NSArray *keys = [objectKeys arrayByAddingObjectsFromArray:self.parseKeys];
-    NSArray *values = [objectValues arrayByAddingObjectsFromArray:parseValues];
+    for (NSString *key in self.parseKeys) {
+        id value = [object valueForKey:key];
+        if (value != nil && value != [NSNull null]) {
+            mutableParams[key] = value;
+        }
+    }
 
-    NSDictionary *params = [[NSDictionary alloc] initWithObjects:values forKeys:keys];
-
-    id obj = [MTLJSONAdapter modelOfClass:modelClass fromJSONDictionary:params error:nil];
+    id obj = [MTLJSONAdapter modelOfClass:modelClass fromJSONDictionary:mutableParams.copy error:nil];
 
     return obj;
 }
