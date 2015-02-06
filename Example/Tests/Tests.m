@@ -88,9 +88,9 @@ describe(@"MTLParseAdapter", ^{
                     @"name": @"Dan",
                     @"numberWithDifferentJSONKey": @8,
                     @"integerNumber": @9,
-                    @"nestedObject": [PFObject objectWithClassName:@"TestObject"]
+                    @"nestedObject": [PFObject objectWithClassName:@"TestParseObject"]
                 };
-                parseObject = [PFObject objectWithClassName:@"TestObject"
+                parseObject = [PFObject objectWithClassName:@"TestParseObject"
                                                  dictionary:params];
 
                 parseObject.objectId = @"objectId";
@@ -124,7 +124,7 @@ describe(@"MTLParseAdapter", ^{
 
                 it(@"should set the appropriate PFObject property", ^{
                     expect(parseObject.objectId).to.equal(@"objectId");
-                    expect(parseObject.parseClassName).to.equal(@"TestObject");
+                    expect(parseObject.parseClassName).to.equal(@"TestParseObject");
                     expect(parseObject.createdAt).to.equal(object.createdAt);
                     expect(parseObject.updatedAt).to.equal(object.updatedAt);
                 });
@@ -135,6 +135,14 @@ describe(@"MTLParseAdapter", ^{
                     TestObject *obj = [[TestObject alloc] init];
                     PFObject *parseObj = [MTLParseAdapter parseObjectFromModel:obj];
                     expect(parseObj.parseClassName).to.equal(@"TestObject");
+                });
+            });
+
+            context(@"when there is no model class given", ^{
+                it(@"should infer class name from Parse class name", ^{
+                    parseObject = [PFObject objectWithClassName:NSStringFromClass(TestObject.class)];
+                    object = (TestObject *)[MTLParseAdapter modelFromParseObject:parseObject];
+                    expect(object).to.beInstanceOf(TestObject.class);
                 });
             });
         });

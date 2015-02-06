@@ -15,6 +15,7 @@
 @interface MTLParseAdapter : NSObject
 
 + (PFObject *)parseObjectFromModel:(MTLModel <MTLJSONSerializing> *)model;
++ (MTLModel<MTLJSONSerializing> *)modelFromParseObject:(PFObject *)object;
 + (MTLModel<MTLJSONSerializing> *)modelOfClass:(Class)modelClass
                                fromParseObject:(PFObject *)object;
 

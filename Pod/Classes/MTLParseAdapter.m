@@ -66,6 +66,11 @@
     return obj;
 }
 
++ (id)modelFromParseObject:(PFObject *)object {
+    if (object.parseClassName == nil) return nil;
+    return [self modelOfClass:NSClassFromString(object.parseClassName) fromParseObject:object];
+}
+
 #pragma mark - Array methods
 + (NSArray *)modelsOfClass:(Class)modelClass
           fromParseObjects:(NSArray *)models {
