@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+
+target 'MTLParseAdapter', :exclusive => true do
+  pod "MTLParseAdapter", :path => "../"
+
+  pod 'Specta', :git => 'https://github.com/specta/specta.git', :tag => 'v0.3.0.beta1'
+  pod 'Expecta'
+end
