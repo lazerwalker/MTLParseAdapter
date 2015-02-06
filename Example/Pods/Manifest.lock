@@ -1,10 +1,12 @@
 PODS:
+  - Asterism (1.0.0)
   - Bolts (1.1.3)
   - Expecta (0.3.1)
   - Mantle (1.5.4):
     - Mantle/extobjc (= 1.5.4)
   - Mantle/extobjc (1.5.4)
   - MTLParseAdapter (0.1.0):
+    - Asterism (~> 1.0)
     - Mantle (~> 1.5)
     - Parse (~> 1.6)
   - Parse (1.6.2):
@@ -29,10 +31,11 @@ CHECKOUT OPTIONS:
     :tag: v0.3.0.beta1
 
 SPEC CHECKSUMS:
+  Asterism: 26783427dc5b3ff144cbabb87485456458797350
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
-  MTLParseAdapter: 3ebcbc6ffaea8d82d28f52b67d8c61f6db2957db
+  MTLParseAdapter: 41ffffca5b3364b443430cad2dc19a6bf7783146
   Parse: 60d65108fe39da77ec16c9e51d74b4d296b21424
   Specta: 63e8ac8e07db6675c7096d37f77a266a1be4c02d
 

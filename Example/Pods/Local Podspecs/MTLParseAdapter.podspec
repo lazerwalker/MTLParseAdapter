@@ -21,6 +21,7 @@ Pod::Spec.new do |s|
   }
 
   s.public_header_files = 'Pod/Classes/**/*.h'
+  s.dependency 'Asterism', '~> 1.0'
   s.dependency 'Mantle', '~> 1.5'
   s.dependency 'Parse', '~> 1.6'
 end
