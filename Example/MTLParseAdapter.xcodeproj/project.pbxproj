@@ -13,6 +13,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		9E13CB9F9670C50D58ACA91D /* libPods-MTLParseAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A1C1A73AA1DB8291804672 /* libPods-MTLParseAdapter.a */; };
+		A66269661A84F79800A187E9 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A66269651A84F79800A187E9 /* TestObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		8DBEE3A06F97F0C6ADBB1D5D /* Pods-MTLParseAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTLParseAdapter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTLParseAdapter/Pods-MTLParseAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		8F0B0AB70189217F537ED033 /* Pods-MTLParseAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTLParseAdapter.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTLParseAdapter/Pods-MTLParseAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		A37CB6A7D9412B6D34FE54D5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A66269641A84F79800A187E9 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
+		A66269651A84F79800A187E9 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
 		D8A1C1A73AA1DB8291804672 /* libPods-MTLParseAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MTLParseAdapter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6145A37BC8733144492F430 /* MTLParseAdapter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MTLParseAdapter.podspec; path = ../MTLParseAdapter.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +55,8 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				A66269641A84F79800A187E9 /* TestObject.h */,
+				A66269651A84F79800A187E9 /* TestObject.m */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
@@ -223,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A66269661A84F79800A187E9 /* TestObject.m in Sources */,
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
