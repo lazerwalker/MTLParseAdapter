@@ -1,28 +1,16 @@
-#
-# Be sure to run `pod lib lint MTLParseAdapter.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "MTLParseAdapter"
   s.version          = "0.1.0"
-  s.summary          = "A short description of MTLParseAdapter."
+  s.summary          = "Easily convert your objects to and from Parse PFObjects"
   s.description      = <<-DESC
-                       An optional longer description of MTLParseAdapter
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                        This library provides an interface to convert
+                        objects that conform to MTLJSONSerializing to and
+                        from PFObjects provided by the Parse SDK.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/MTLParseAdapter"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/lazerwalker/MTLParseAdapter"
   s.license          = 'MIT'
   s.author           = { "Mike Walker" => "michael@lazerwalker.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/MTLParseAdapter.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/lazerwalker/MTLParseAdapter.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
@@ -32,7 +20,7 @@ Pod::Spec.new do |s|
     'MTLParseAdapter' => ['Pod/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.public_header_files = 'Pod/Classes/**/*.h'
+  s.dependency 'Mantle', '~> 1.5'
+  s.dependency 'Parse', '~> 1.6'
 end
