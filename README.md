@@ -12,9 +12,9 @@ MTLParseAdapter is a small class that lets you easily serialize and deserialize 
 [Parse](https://parse.com)'s iOS library encourages you to model your data in one of two ways. You can use `PFObject` as a key-value store, similar to how one would use `NSDictionary`, but doing this you lose a lot of the convenience and type safety of properties. Alternatively, you can make your own domain objects subclass `PFObject`, but this is problematic for a number of reasons:
 
 * You cannot gain functionality from subclassing a different class (such as Mantle's `MTLModel`).
-* This makes each of your model objects aware of how to persist to Parse, which depending on your application structure may be a violation of the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle).
-* The implementation of Parse's SDK is not open-source, making it more difficult to debug issues that might arise. Minimizing the presence of `PFObject` in your object graph can help minimize any pain this might cause.
-* If you want to switch to using a different backend service, be it a different Backend-as-a-Service or your own servers, removing Parse from your application will involve changing your client domain objects.
+* Depending on your app's structure, having your model objects be aware of how to persist to Parse may be a violation of the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). This isn't necessarily a problem in practice, but is still less than ideal.
+* The implementation of Parse's SDK is not open-source, making it more difficult to debug issues that might arise. Minimizing the presence of `PFObject` in your object graph can help reduce any pain this might cause.
+* If you want to switch to using a different backend, be it a different BaaS or your own servers, removing Parse from your application will necessitate modifications to your client domain objects.
 
 `MTLParseAdapter` gives you a way to avoid these problems. It allows you to model your domain objects as `MTLModel` Mantle objects, and serialize them into `PFObject`s and back as needed.
 
