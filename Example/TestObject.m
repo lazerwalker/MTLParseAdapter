@@ -19,10 +19,10 @@
 + (NSValueTransformer *)nestedObjectJSONTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(PFObject *obj) {
         if (obj == nil) return nil;
-        return [MTLParseAdapter modelOfClass:TestObject.class fromParseObject:obj];
+        return [MTLParseAdapter modelOfClass:TestObject.class fromParseObject:obj error:nil];
     } reverseBlock:^id(TestObject *obj) {
         if (obj == nil) return nil;
-        return [MTLParseAdapter parseObjectFromModel:obj];
+        return [MTLParseAdapter parseObjectFromModel:obj error:nil];
     }];
 }
 

@@ -29,20 +29,21 @@ After doing this, you can use `MTLParseAdapter` to convert your model objects.
 
 ```objc
 User *user = [[User alloc] init];
-PFObject *parseObject = [MTLParseAdapter parseObjectFromModel:user];
+PFObject *parseObject = [MTLParseAdapter parseObjectFromModel:user error:&error];
 ```
 
 ```objc
 PFObject *parseObject; // Fetched via a PFQuery, for instance
 User *user = [MTLParseAdapter modelOfClass:User.class 
-							fromParseObject:parseObject];
+							fromParseObject:parseObject
+							error:&error];
 ```
 
 If your Parse class names are identical to the names of your Objective-C object classes, you can omit the model class when deserializing from `PFObject`
 
 ```objc
 PFObject *parseObject = [PFObject objectWithClassName:@"User"];
-User *user = [MTLParseAdapter modelFromParseObject:parseObject];
+User *user = [MTLParseAdapter modelFromParseObject:parseObject error:&error];
 ```
 
 Equivalent methods exist to convert arrays of multiple objects of the same class.
@@ -50,7 +51,7 @@ Equivalent methods exist to convert arrays of multiple objects of the same class
 User *user1 = [[User alloc] init];
 User *user2 = [[User alloc] init];
 NSArray *users = @[user1, user2];
-PFObject *parseObject = [MTLParseAdapter parseObjectsFromModels:users];
+PFObject *parseObject = [MTLParseAdapter parseObjectsFromModels:users error:&error];
 ```
 
 ```objc
@@ -58,7 +59,8 @@ PFObject *parseObject1 = [PFObject objectWithClassName:@"User"];
 PFObject *parseObject2 = [PFObject objectWithClassName:@"User"];
 NSArray *parseObjects = @[parseObject1, parseObject2];
 User *user = [MTLParseAdapter modelsOfClass:User.class 
-							fromParseObjects:parseObjects];
+							fromParseObjects:parseObjects
+							error:&error];
 ```
 
 As above, there is also a `modelsFromParseObjects:` method that infers the Objective-C class of each `PFObject` based on its `parseClassName`.

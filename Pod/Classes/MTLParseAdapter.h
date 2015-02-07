@@ -24,7 +24,8 @@
  * - createdAt
  * - updatedAt
  */
-+ (PFObject *)parseObjectFromModel:(MTLModel <MTLJSONSerializing> *)model;
++ (PFObject *)parseObjectFromModel:(MTLModel <MTLJSONSerializing> *)model
+                             error:(NSError **)error;
 
 /** Attempts to convert a PFObject into a model object
  * @param modelClass The MTLModel subclass to convert into. This must conform to MTLJSONSerializing
@@ -33,7 +34,8 @@
  * @return An instance of `modelClass`, or nil if a parsing error occured.
  */
 + (MTLModel<MTLJSONSerializing> *)modelOfClass:(Class)modelClass
-                               fromParseObject:(PFObject *)object;
+                               fromParseObject:(PFObject *)object
+                                         error:(NSError **)error;
 
 /** Attempts to convert a PFObject into a model object
  * Instead of specifying a model class, this will try to infer the model class
@@ -41,7 +43,8 @@
  * 
  * @see modelOfClass:fromParseObject
  */
-+ (MTLModel<MTLJSONSerializing> *)modelFromParseObject:(PFObject *)object;
++ (MTLModel<MTLJSONSerializing> *)modelFromParseObject:(PFObject *)object
+                                                 error:(NSError **)error;
 
 #pragma mark - Array methods
 /**
@@ -54,8 +57,8 @@
  *
  * @see parseObjectFromModel:
  */
-+ (NSArray *)parseObjectsFromModels:(NSArray *)models;
-
++ (NSArray *)parseObjectsFromModels:(NSArray *)models
+                              error:(NSError **)error;
 
 /** Attempts to convert an array of PFObjects into model objects
  * @param modelClass The MTLModel subclass to use to parse all models
@@ -65,7 +68,8 @@
  * @see modelsFromParseObjects:
  */
 + (NSArray *)modelsOfClass:(Class)modelClass
-          fromParseObjects:(NSArray *)objects;
+          fromParseObjects:(NSArray *)objects
+                     error:(NSError **)error;
 
 /** Attempts to convert an array of PFObjects into model objects
  * Instead of specifying a model class, this will try to infer the model class
@@ -73,6 +77,7 @@
  *
  * @see modelsOfClass:fromParseObjects:
 */
-+ (NSArray *)modelsFromParseObjects:(NSArray *)models;
++ (NSArray *)modelsFromParseObjects:(NSArray *)models
+                              error:(NSError **)error;
 
 @end

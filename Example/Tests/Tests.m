@@ -25,7 +25,12 @@ describe(@"MTLParseAdapter", ^{
                 object.createdAt = [NSDate date];
                 object.updatedAt = [NSDate dateWithTimeIntervalSinceNow:-1000];
 
-                parseObject = [MTLParseAdapter parseObjectFromModel:object];
+                parseObject = [MTLParseAdapter parseObjectFromModel:object error:nil];
+            });
+
+            xcontext(@"when parsing fails", ^{
+                it(@"should thread the error through", ^{
+                });
             });
 
             it(@"should have the same values for core Obj-C datatypes", ^{
@@ -70,7 +75,7 @@ describe(@"MTLParseAdapter", ^{
             context(@"when there is no parseClassName set", ^{
                 it(@"should default to the model class name", ^{
                     TestObject *obj = [[TestObject alloc] init];
-                    PFObject *parseObj = [MTLParseAdapter parseObjectFromModel:obj];
+                    PFObject *parseObj = [MTLParseAdapter parseObjectFromModel:obj error:nil];
                     expect(parseObj.parseClassName).to.equal(@"TestObject");
                 });
             });
@@ -92,7 +97,7 @@ describe(@"MTLParseAdapter", ^{
 
                 parseObject.objectId = @"objectId";
 
-                object = (TestObject *)[MTLParseAdapter modelOfClass:TestObject.class fromParseObject:parseObject];
+                object = (TestObject *)[MTLParseAdapter modelOfClass:TestObject.class fromParseObject:parseObject error:nil];
             });
 
             it(@"should have the same values for core Obj-C datatypes", ^{
@@ -135,7 +140,7 @@ describe(@"MTLParseAdapter", ^{
             context(@"when there is no parseClassName set", ^{
                 it(@"should default to the model class name", ^{
                     TestObject *obj = [[TestObject alloc] init];
-                    PFObject *parseObj = [MTLParseAdapter parseObjectFromModel:obj];
+                    PFObject *parseObj = [MTLParseAdapter parseObjectFromModel:obj error:nil];
                     expect(parseObj.parseClassName).to.equal(@"TestObject");
                 });
             });
@@ -143,8 +148,13 @@ describe(@"MTLParseAdapter", ^{
             context(@"when there is no model class given", ^{
                 it(@"should infer class name from Parse class name", ^{
                     parseObject = [PFObject objectWithClassName:NSStringFromClass(TestObject.class)];
-                    object = (TestObject *)[MTLParseAdapter modelFromParseObject:parseObject];
+                    object = (TestObject *)[MTLParseAdapter modelFromParseObject:parseObject error:nil];
                     expect(object).to.beInstanceOf(TestObject.class);
+                });
+            });
+
+            xcontext(@"when parsing fails", ^{
+                it(@"should thread the error through", ^{
                 });
             });
         });
@@ -164,7 +174,7 @@ describe(@"MTLParseAdapter", ^{
                 second.name = @"Second";
 
                 objects = @[first, second];
-                parseObjects = [MTLParseAdapter parseObjectsFromModels:objects];
+                parseObjects = [MTLParseAdapter parseObjectsFromModels:objects error:nil];
             });
 
             it(@"should have the same number of items in the array", ^{
@@ -181,6 +191,12 @@ describe(@"MTLParseAdapter", ^{
                 expect(parseObjects[0][@"name"]).to.equal(@"First");
                 expect(parseObjects[1][@"name"]).to.equal(@"Second");
             });
+
+            xcontext(@"when parsing any individual object fails", ^{
+                it(@"should thread the error through", ^{
+                });
+            });
+
         });
 
         describe(@"converting from Parse objects to model objects", ^{
@@ -194,7 +210,7 @@ describe(@"MTLParseAdapter", ^{
                                            dictionary:@{@"name": @"Second"}];
 
                 parseObjects = @[first, second];
-                objects = [MTLParseAdapter modelsOfClass:TestObject.class fromParseObjects:parseObjects];
+                objects = [MTLParseAdapter modelsOfClass:TestObject.class fromParseObjects:parseObjects error:nil];
             });
 
             it(@"should have the same number of items in the array", ^{
@@ -218,11 +234,15 @@ describe(@"MTLParseAdapter", ^{
                 it(@"should infer class name from Parse class name", ^{
                     PFObject *parseObject = [PFObject objectWithClassName:NSStringFromClass(TestObject.class)];
                     parseObjects = @[parseObject];
-                    objects = [MTLParseAdapter modelsFromParseObjects:parseObjects];
+                    objects = [MTLParseAdapter modelsFromParseObjects:parseObjects error:nil];
                     expect(objects.firstObject).to.beInstanceOf(TestObject.class);
                 });
             });
 
+            xcontext(@"when parsing any individual object fails", ^{
+                it(@"should thread the error through", ^{
+                });
+            });
         });
     });
 });
