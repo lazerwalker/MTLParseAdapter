@@ -76,7 +76,9 @@ It includes Mantle and Parse as dependencies.
 ## Author
 
 Mike Lazer-Walker
+
 michael@lazerwalker.com
+
 @lazerwalker
 
 ## License
