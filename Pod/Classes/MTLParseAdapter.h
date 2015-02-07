@@ -1,11 +1,3 @@
-//
-//  MTLParseAdapter.h
-//  Pods
-//
-//  Created by Michael Walker on 2/6/15.
-//
-//
-
 #import <Foundation/Foundation.h>
 
 @class PFObject;

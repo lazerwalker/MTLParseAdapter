@@ -1,11 +1,3 @@
-//
-//  MTLParseAdapterTests.m
-//  MTLParseAdapterTests
-//
-//  Created by Mike Walker on 02/06/2015.
-//  Copyright (c) 2014 Mike Walker. All rights reserved.
-//
-
 #import <MTLParseAdapter/MTLParseAdapter.h>
 #import <Parse/Parse.h>
 

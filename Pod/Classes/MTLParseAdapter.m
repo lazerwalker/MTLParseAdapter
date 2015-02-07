@@ -1,11 +1,3 @@
-//
-//  MTLParseAdapter.m
-//  Pods
-//
-//  Created by Michael Walker on 2/6/15.
-//
-//
-
 #import <Asterism/Asterism.h>
 #import <Mantle/Mantle.h>
 #import <Parse/Parse.h>
