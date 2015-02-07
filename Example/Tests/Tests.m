@@ -54,6 +54,11 @@ describe(@"MTLParseAdapter", ^{
                 expect(parseObject[@"nestedObject"][@"name"]).to.equal(@"name2");
             });
 
+            it(@"should not affect the generated object when mutating the original object", ^{
+                object.name = @"new name";
+                expect(parseObject[@"name"]).to.equal(@"name");
+            });
+
             context(@"when a property is a special Parse property", ^{
                 it(@"should not be set in the object dictionary", ^{
                     expect(parseObject[@"objectId"]).to.beNil;
@@ -112,6 +117,11 @@ describe(@"MTLParseAdapter", ^{
 
             it(@"should properly use value transformers", ^{
                 expect(object.nestedObject).to.beInstanceOf(TestObject.class);
+            });
+
+            it(@"should not affect the generated object when mutating the original object", ^{
+                parseObject[@"name"] = @"new name";
+                expect(object.name).to.equal(@"Dan");
             });
 
             context(@"when a property is a special Parse property", ^{
