@@ -73,8 +73,8 @@
 
 #pragma mark - Array methods
 + (NSArray *)modelsOfClass:(Class)modelClass
-          fromParseObjects:(NSArray *)models {
-    return ASTMap(models, ^id(PFObject *obj) {
+          fromParseObjects:(NSArray *)objects {
+    return ASTMap(objects, ^id(PFObject *obj) {
         return [self modelOfClass:modelClass fromParseObject:obj];
     });
 }
