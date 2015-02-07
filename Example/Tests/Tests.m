@@ -157,6 +157,72 @@ describe(@"MTLParseAdapter", ^{
             });
         });
     });
+
+    describe(@"converting an array of objects", ^{
+        describe(@"converting from model objects to Parse objects", ^{
+            __block NSArray *objects, *parseObjects;
+
+            beforeEach(^{
+                TestObject *first, *second;
+
+                first = [[TestObject alloc] init];
+                first.name = @"First";
+
+                second = [[TestObject alloc] init];
+                second.name = @"Second";
+
+                objects = @[first, second];
+                parseObjects = [MTLParseAdapter parseObjectsFromModels:objects];
+            });
+
+            it(@"should have the same number of items in the array", ^{
+                expect(parseObjects.count).to.equal(2);
+            });
+
+            it(@"should have only PFObjects", ^{
+                for (id obj in parseObjects) {
+                    expect(obj).to.beInstanceOf(PFObject.class);
+                }
+            });
+
+            it(@"should maintain object ordering", ^{
+                expect(parseObjects[0][@"name"]).to.equal(@"First");
+                expect(parseObjects[1][@"name"]).to.equal(@"Second");
+            });
+        });
+
+        describe(@"converting from Parse objects to model objects", ^{
+            __block NSArray *objects, *parseObjects;
+            __block PFObject *first, *second;
+
+            beforeEach(^{
+                first = [PFObject objectWithClassName:@"Class"
+                                           dictionary:@{@"name": @"First"}];
+                second = [PFObject objectWithClassName:@"Class"
+                                           dictionary:@{@"name": @"Second"}];
+
+                parseObjects = @[first, second];
+                objects = [MTLParseAdapter modelsOfClass:TestObject.class fromParseObjects:parseObjects];
+            });
+
+            it(@"should have the same number of items in the array", ^{
+                expect(objects.count).to.equal(2);
+            });
+
+            it(@"should have only objects of the correct class", ^{
+                for (id obj in objects) {
+                    expect(obj).to.beInstanceOf(TestObject.class);
+                }
+            });
+
+            it(@"should maintain object ordering", ^{
+                TestObject *first = objects.firstObject;
+                TestObject *second = objects.lastObject;
+                expect(first.name).to.equal(@"First");
+                expect(second.name).to.equal(@"Second");
+            });
+        });
+    });
 });
 
 SpecEnd
