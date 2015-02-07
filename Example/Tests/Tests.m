@@ -221,6 +221,16 @@ describe(@"MTLParseAdapter", ^{
                 expect(first.name).to.equal(@"First");
                 expect(second.name).to.equal(@"Second");
             });
+
+            context(@"when there is no model class given", ^{
+                it(@"should infer class name from Parse class name", ^{
+                    PFObject *parseObject = [PFObject objectWithClassName:NSStringFromClass(TestObject.class)];
+                    parseObjects = @[parseObject];
+                    objects = [MTLParseAdapter modelsFromParseObjects:parseObjects];
+                    expect(objects.firstObject).to.beInstanceOf(TestObject.class);
+                });
+            });
+
         });
     });
 });

@@ -85,4 +85,10 @@
     });
 }
 
++ (NSArray *)modelsFromParseObjects:(NSArray *)models {
+    return ASTMap(models, ^id(PFObject *obj) {
+        return [self modelFromParseObject:obj];
+    });
+}
+
 @end
