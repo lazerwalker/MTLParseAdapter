@@ -18,7 +18,7 @@ MTLParseAdapter is a small class that lets you easily serialize and deserialize 
 
 `MTLParseAdapter` gives you a way to avoid these problems. It allows you to model your domain objects as `MTLModel` Mantle objects, and serialize them into `PFObject`s and back as needed.
 
-It is modelled after and built on top of the JSON serialization functionality in [Mantle](https://github.com/Mantle/Mantle). If your domain objects are already `MTLModel` subclasses that conform to `MTLJSONSerializing`, no additional work should be needed to allow MTLParseAdapter to convert your objects to and from `PFObject`s. If you have used `MTLJSONAdapter` before, `MTLParseSerializer` will feel very familiar.
+It is modelled after and built on top of the JSON serialization functionality in [Mantle](https://github.com/Mantle/Mantle). If your domain objects are already `MTLModel` subclasses that conform to `MTLJSONSerializing`, no additional work should be needed to allow MTLParseAdapter to convert your objects to and from `PFObject`s. If you have used `MTLJSONAdapter` before, `MTLParseAdapter` will feel very familiar.
 
 
 ## Usage
