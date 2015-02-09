@@ -19,6 +19,7 @@
     NSDictionary *params = [MTLJSONAdapter JSONDictionaryFromModel:model];
 
     NSDictionary *parseParams = ASTPick(params, self.parseKeys);
+    parseParams = ASTFilter(parseParams, ^BOOL(id obj) { return obj != [NSNull null]; });
 
     NSMutableDictionary *mutableParams = [params mutableCopy];
     [mutableParams removeObjectsForKeys:self.parseKeys];
@@ -27,11 +28,9 @@
     PFObject *object = [PFObject objectWithClassName:NSStringFromClass(model.class)
                                           dictionary:params];
 
-    for (NSString *key in parseParams) {
-        if (parseParams[key] != [NSNull null]) {
-            [object setValue:parseParams[key] forKey:key];
-        }
-    }
+    ASTEach(parseParams, ^(id key, id value) {
+        [object setValue:value forKey:key];
+    });
 
     return object;
 }
