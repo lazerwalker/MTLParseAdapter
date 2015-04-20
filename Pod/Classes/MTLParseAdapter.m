@@ -1,11 +1,6 @@
 #import <Asterism/Asterism.h>
 #import <Mantle/Mantle.h>
-
-#ifdef TARGET_OS_IPHONE
-    #import <Parse/Parse.h>
-#else
-    #import <Parse-OSX/ParseOSX.h>
-#endif
+#import <Parse/Parse.h>
 
 #import "MTLParseAdapter.h"
 

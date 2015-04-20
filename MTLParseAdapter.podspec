@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MTLParseAdapter"
-  s.version          = "0.2.0"
+  s.version          = "0.1.0"
   s.summary          = "Easily convert your objects to and from Parse PFObjects"
   s.description      = <<-DESC
                         This library provides an interface to convert
@@ -12,9 +12,7 @@ Pod::Spec.new do |s|
   s.author           = { "Mike Walker" => "michael@lazerwalker.com" }
   s.source           = { :git => "https://github.com/lazerwalker/MTLParseAdapter.git", :tag => s.version.to_s }
 
-  s.ios.deployment_target = '7.0'
-  s.osx.deployment_target = '10.8'
-
+  s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
@@ -25,7 +23,5 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.dependency 'Asterism', '~> 1.0'
   s.dependency 'Mantle', '~> 1.5'
-
-  s.ios.dependency 'Parse', '~> 1.6'
-  s.osx.dependency 'Parse-OSX', '~> 1.6'
+  s.dependency 'Parse', '~> 1.6'
 end
