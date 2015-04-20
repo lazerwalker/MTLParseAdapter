@@ -1,6 +1,7 @@
 # MTLParseAdapter
 
 [![CI Status](http://img.shields.io/travis/lazerwalker/MTLParseAdapter.svg?style=flat)](https://travis-ci.org/lazerwalker/MTLParseAdapter)
+[![Coverage Status](https://coveralls.io/repos/lazerwalker/MTLParseAdapter/badge.svg)](https://coveralls.io/r/lazerwalker/MTLParseAdapter)
 [![Version](https://img.shields.io/cocoapods/v/MTLParseAdapter.svg?style=flat)](http://cocoadocs.org/docsets/MTLParseAdapter)
 [![License](https://img.shields.io/cocoapods/l/MTLParseAdapter.svg?style=flat)](http://cocoadocs.org/docsets/MTLParseAdapter)
 [![Platform](https://img.shields.io/cocoapods/p/MTLParseAdapter.svg?style=flat)](http://cocoadocs.org/docsets/MTLParseAdapter)
