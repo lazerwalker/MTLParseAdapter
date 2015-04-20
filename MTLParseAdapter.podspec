@@ -12,7 +12,9 @@ Pod::Spec.new do |s|
   s.author           = { "Mike Walker" => "michael@lazerwalker.com" }
   s.source           = { :git => "https://github.com/lazerwalker/MTLParseAdapter.git", :tag => s.version.to_s }
 
-  s.platform     = [:ios, '7.0', :osx, '10.8']
+  s.ios.deployment_target = '7.0'
+  s.osx.deployment_target = '10.8'
+
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
