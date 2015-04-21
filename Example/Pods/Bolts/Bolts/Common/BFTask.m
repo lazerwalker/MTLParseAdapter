@@ -19,9 +19,6 @@ __attribute__ ((noinline)) void warnBlockingOperationOnMainThread() {
           " Break on warnBlockingOperationOnMainThread() to debug.");
 }
 
-NSString *const BFTaskErrorDomain = @"bolts";
-NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsException";
-
 @interface BFTask () {
     id _result;
     NSError *_error;
@@ -29,7 +26,6 @@ NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsExcept
 }
 
 @property (atomic, assign, readwrite, getter = isCancelled) BOOL cancelled;
-@property (atomic, assign, readwrite, getter = isFaulted) BOOL faulted;
 @property (atomic, assign, readwrite, getter = isCompleted) BOOL completed;
 
 @property (nonatomic, retain, readwrite) NSObject *lock;
@@ -111,7 +107,7 @@ NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsExcept
                         tcs.exception = [exceptions objectAtIndex:0];
                     } else {
                         NSException *exception =
-                        [NSException exceptionWithName:BFTaskMultipleExceptionsException
+                        [NSException exceptionWithName:@"BFMultipleExceptionsException"
                                                 reason:@"There were multiple exceptions."
                                               userInfo:@{ @"exceptions": exceptions }];
                         tcs.exception = exception;
@@ -120,7 +116,7 @@ NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsExcept
                     if (errors.count == 1) {
                         tcs.error = [errors objectAtIndex:0];
                     } else {
-                        NSError *error = [NSError errorWithDomain:BFTaskErrorDomain
+                        NSError *error = [NSError errorWithDomain:@"bolts"
                                                              code:kBFMultipleErrorsError
                                                          userInfo:@{ @"errors": errors }];
                         tcs.error = error;
@@ -133,12 +129,6 @@ NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsExcept
         }];
     }
     return tcs.task;
-}
-
-+ (instancetype)taskForCompletionOfAllTasksWithResults:(NSArray *)tasks {
-    return [[self taskForCompletionOfAllTasks:tasks] continueWithSuccessBlock:^id(BFTask *task) {
-        return [tasks valueForKey:@"result"];
-    }];
 }
 
 + (instancetype)taskWithDelay:(int)millis {
@@ -201,7 +191,6 @@ NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsExcept
             return NO;
         }
         self.completed = YES;
-        self.faulted = YES;
         _error = error;
         [self runContinuations];
         return YES;
@@ -227,7 +216,6 @@ NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsExcept
             return NO;
         }
         self.completed = YES;
-        self.faulted = YES;
         _exception = exception;
         [self runContinuations];
         return YES;
@@ -237,12 +225,6 @@ NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsExcept
 - (BOOL)isCancelled {
     @synchronized (self.lock) {
         return _cancelled;
-    }
-}
-
-- (BOOL)isFaulted {
-    @synchronized (self.lock) {
-        return _faulted;
     }
 }
 
@@ -378,31 +360,6 @@ NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsExcept
     }
     [self.condition wait];
     [self.condition unlock];
-}
-
-#pragma mark - NSObject
-
-- (NSString *)description {
-    // Acquire the data from the locked properties
-    BOOL isCompleted;
-    BOOL isCancelled;
-    BOOL isFaulted;
-
-    @synchronized (self.lock) {
-        isCompleted = self.completed;
-        isCancelled = self.cancelled;
-        isFaulted = self.faulted;
-    }
-
-    // Description string includes status information and, if available, the
-    // result sisnce in some ways this is what a promise actually "is".
-    return [NSString stringWithFormat:@"<%@: %p; completed = %@; cancelled = %@; faulted = %@;%@>",
-            NSStringFromClass([self class]),
-            self,
-            isCompleted ? @"YES" : @"NO",
-            isCancelled ? @"YES" : @"NO",
-            isFaulted ? @"YES" : @"NO",
-            isCompleted ? [NSString stringWithFormat:@" result:%@", _result] : @""];
 }
 
 @end

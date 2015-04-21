@@ -13,13 +13,10 @@
 #import "BFTask.h"
 
 @interface BFTaskCompletionSource ()
-
 @property (nonatomic, retain, readwrite) BFTask *task;
-
 @end
 
 @interface BFTask (BFTaskCompletionSource)
-
 - (void)setResult:(id)result;
 - (void)setError:(NSError *)error;
 - (void)setException:(NSException *)exception;
@@ -28,7 +25,6 @@
 - (BOOL)trySetError:(NSError *)error;
 - (BOOL)trySetException:(NSException *)exception;
 - (BOOL)trySetCancelled;
-
 @end
 
 @implementation BFTaskCompletionSource

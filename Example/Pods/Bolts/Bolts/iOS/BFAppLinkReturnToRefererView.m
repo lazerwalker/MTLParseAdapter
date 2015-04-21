@@ -71,7 +71,6 @@ static const CGFloat BFCloseButtonHeight = 12.0;
         _closeButton.userInteractionEnabled = YES;
         _closeButton.clipsToBounds = YES;
         _closeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
-        _closeButton.contentMode = UIViewContentModeCenter;
         [_closeButton addTarget:self action:@selector(closeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
         [self addSubview:_closeButton];
@@ -109,14 +108,14 @@ static const CGFloat BFCloseButtonHeight = 12.0;
     CGSize labelSize = [_labelView sizeThatFits:bounds.size];
     _labelView.preferredMaxLayoutWidth = _labelView.bounds.size.width;
     _labelView.frame = CGRectMake(BFMarginX,
-                                  CGRectGetMaxY(bounds) - labelSize.height - 1.5 * BFMarginY,
+                                  CGRectGetMaxY(bounds) - labelSize.height - BFMarginY,
                                   CGRectGetMaxX(bounds) - BFCloseButtonWidth - 3 * BFMarginX,
-                                  labelSize.height + BFMarginY);
+                                  labelSize.height);
 
-    _closeButton.frame = CGRectMake(CGRectGetMaxX(bounds) - BFCloseButtonWidth - 2 * BFMarginX,
-                                    _labelView.center.y - BFCloseButtonHeight / 2.0 - BFMarginY,
-                                    BFCloseButtonWidth + 2 * BFMarginX,
-                                    BFCloseButtonHeight + 2 * BFMarginY);
+    _closeButton.frame = CGRectMake(CGRectGetMaxX(bounds) - BFCloseButtonWidth - BFMarginX,
+                                    _labelView.center.y - BFCloseButtonHeight / 2.0,
+                                    BFCloseButtonWidth,
+                                    BFCloseButtonHeight);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -170,7 +169,7 @@ static const CGFloat BFCloseButtonHeight = 12.0;
     UIImage *closeButtonImage = [self drawCloseButtonImageWithColor:_textColor];
 
     _labelView.textColor = _textColor;
-    [_closeButton setImage:closeButtonImage forState:UIControlStateNormal];
+    [_closeButton setBackgroundImage:closeButtonImage forState:UIControlStateNormal];
 }
 
 - (UIImage *)drawCloseButtonImageWithColor:(UIColor *)color {

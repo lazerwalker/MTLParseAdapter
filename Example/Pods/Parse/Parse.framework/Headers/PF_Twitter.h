@@ -6,10 +6,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
-
-PF_ASSUME_NONNULL_BEGIN
-
 @class BFTask;
 
 /*!
@@ -21,32 +17,32 @@ PF_ASSUME_NONNULL_BEGIN
 /*!
  @abstract Consumer key of the application that is used to authorize with Twitter.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSString *consumerKey;
+@property (nonatomic, copy) NSString *consumerKey;
 
 /*!
  @abstract Consumer secret of the application that is used to authorize with Twitter.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSString *consumerSecret;
+@property (nonatomic, copy) NSString *consumerSecret;
 
 /*!
  @abstract Auth token for the current user.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSString *authToken;
+@property (nonatomic, copy) NSString *authToken;
 
 /*!
  @abstract Auth token secret for the current user.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSString *authTokenSecret;
+@property (nonatomic, copy) NSString *authTokenSecret;
 
 /*!
  @abstract Twitter user id of the currently signed in user.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *userId;
 
 /*!
  @abstract Twitter screen name of the currently signed in user.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSString *screenName;
+@property (nonatomic, copy) NSString *screenName;
 
 /*!
  @abstract Displays an auth dialog and populates the authToken, authTokenSecret, userId, and screenName properties
@@ -64,9 +60,9 @@ PF_ASSUME_NONNULL_BEGIN
  @param failure Invoked upon an error occurring in the authorization process.
  @param cancel Invoked when the user cancels authorization.
  */
-- (void)authorizeWithSuccess:(PF_NULLABLE void (^)(void))success
-                     failure:(PF_NULLABLE void (^)(NSError *PF_NULLABLE_S error))failure
-                      cancel:(PF_NULLABLE void (^)(void))cancel;
+- (void)authorizeWithSuccess:(void (^)(void))success
+                     failure:(void (^)(NSError *error))failure
+                      cancel:(void (^)(void))cancel;
 
 /*!
  @abstract Adds a 3-legged OAuth signature to an `NSMutableURLRequest` based
@@ -76,8 +72,6 @@ PF_ASSUME_NONNULL_BEGIN
 
  @param request Request to sign.
  */
-- (void)signRequest:(PF_NULLABLE NSMutableURLRequest *)request;
+- (void)signRequest:(NSMutableURLRequest *)request;
 
 @end
-
-PF_ASSUME_NONNULL_END

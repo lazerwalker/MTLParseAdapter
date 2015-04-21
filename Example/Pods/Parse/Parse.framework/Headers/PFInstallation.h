@@ -6,11 +6,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Parse/PFNullability.h>
 #import <Parse/PFObject.h>
 #import <Parse/PFSubclassing.h>
-
-PF_ASSUME_NONNULL_BEGIN
 
 /*!
  A Parse Framework Installation Object that is a local representation of an
@@ -35,6 +32,25 @@ PF_ASSUME_NONNULL_BEGIN
 
 @interface PFInstallation : PFObject<PFSubclassing>
 
+/*!
+ @abstract The name of the Installation class in the REST API.
+
+ @discussion This is a required PFSubclassing method.
+ */
++ (NSString *)parseClassName;
+
+///--------------------------------------
+/// @name Targeting Installations
+///--------------------------------------
+
+/*!
+ @abstract Creates a <PFQuery> for `PFInstallation` objects.
+
+ @discussion The resulting query can only be used for targeting a <PFPush>.
+ Calling find methods on the resulting query will raise an exception.
+ */
++ (PFQuery *)query;
+
 ///--------------------------------------
 /// @name Accessing the Current Installation
 ///--------------------------------------
@@ -49,6 +65,13 @@ PF_ASSUME_NONNULL_BEGIN
  @result Returns a `PFInstallation` that represents the currently-running installation.
  */
 + (instancetype)currentInstallation;
+
+/*!
+ @abstract Sets the device token string property from an `NSData`-encoded token.
+
+ @param deviceTokenData A token that identifies the device.
+ */
+- (void)setDeviceTokenFromData:(NSData *)deviceTokenData;
 
 ///--------------------------------------
 /// @name Installation Properties
@@ -67,7 +90,7 @@ PF_ASSUME_NONNULL_BEGIN
 /*!
  @abstract The device token for the `PFInstallation`.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, strong) NSString *deviceToken;
+@property (nonatomic, strong) NSString *deviceToken;
 
 /*!
  @abstract The badge for the `PFInstallation`.
@@ -77,37 +100,11 @@ PF_ASSUME_NONNULL_BEGIN
 /*!
  @abstract The name of the time zone for the `PFInstallation`.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, strong, readonly) NSString *timeZone;
+@property (nonatomic, strong, readonly) NSString *timeZone;
 
 /*!
  @abstract The channels for the `PFInstallation`.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, strong) NSArray *channels;
-
-/*!
- @abstract Sets the device token string property from an `NSData`-encoded token.
-
- @param deviceTokenData A token that identifies the device.
- */
-- (void)setDeviceTokenFromData:(PF_NULLABLE NSData *)deviceTokenData;
-
-///--------------------------------------
-/// @name Querying for Installations
-///--------------------------------------
-
-/*!
- @abstract Creates a <PFQuery> for `PFInstallation` objects.
-
- @discussion Only the following types of queries are allowed for installations:
-
- - `[query getObjectWithId:<value>]`
- - `[query whereKey:@"installationId" equalTo:<value>]`
- - `[query whereKey:@"installationId" matchesKey:<key in query> inQuery:<query>]`
-
- You can add additional query conditions, but one of the above must appear as a top-level `AND` clause in the query.
- */
-+ (PF_NULLABLE PFQuery *)query;
+@property (nonatomic, strong) NSArray *channels;
 
 @end
-
-PF_ASSUME_NONNULL_END

@@ -11,9 +11,7 @@
 #import "BFExecutor.h"
 
 @interface BFExecutor ()
-
-@property (nonatomic, copy) void(^block)(void(^block)());
-
+@property (copy) void(^block)(void(^block)());
 @end
 
 @implementation BFExecutor
@@ -27,7 +25,7 @@
         defaultExecutor = [BFExecutor executorWithBlock:^void(void(^block)()) {
             static const NSString *kBFTaskDepthKey = @"BFTaskDepth";
             static const int kBFTaskDefaultExecutorMaxDepth = 20;
-
+            
             // We prefer to run everything possible immediately, so that there is callstack information
             // when debugging. However, we don't want the stack to get too deep, so if the number of
             // recursive calls to this method exceeds a certain depth, we dispatch to another GCD queue.

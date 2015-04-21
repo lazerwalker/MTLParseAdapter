@@ -14,7 +14,6 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		9E13CB9F9670C50D58ACA91D /* libPods-MTLParseAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A1C1A73AA1DB8291804672 /* libPods-MTLParseAdapter.a */; };
 		A66269661A84F79800A187E9 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A66269651A84F79800A187E9 /* TestObject.m */; };
-		C6A6A63D1AE6829A002D2753 /* MTLParseAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A6A63C1AE6829A002D2753 /* MTLParseAdapter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +33,6 @@
 		A37CB6A7D9412B6D34FE54D5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A66269641A84F79800A187E9 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
 		A66269651A84F79800A187E9 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
-		C6A6A63B1AE6829A002D2753 /* MTLParseAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTLParseAdapter.h; path = ../Pod/Classes/MTLParseAdapter.h; sourceTree = "<group>"; };
-		C6A6A63C1AE6829A002D2753 /* MTLParseAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTLParseAdapter.m; path = ../Pod/Classes/MTLParseAdapter.m; sourceTree = "<group>"; };
 		D8A1C1A73AA1DB8291804672 /* libPods-MTLParseAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MTLParseAdapter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6145A37BC8733144492F430 /* MTLParseAdapter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MTLParseAdapter.podspec; path = ../MTLParseAdapter.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,8 +55,6 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				C6A6A63B1AE6829A002D2753 /* MTLParseAdapter.h */,
-				C6A6A63C1AE6829A002D2753 /* MTLParseAdapter.m */,
 				A66269641A84F79800A187E9 /* TestObject.h */,
 				A66269651A84F79800A187E9 /* TestObject.m */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
@@ -234,7 +229,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A66269661A84F79800A187E9 /* TestObject.m in Sources */,
-				C6A6A63D1AE6829A002D2753 /* MTLParseAdapter.m in Sources */,
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

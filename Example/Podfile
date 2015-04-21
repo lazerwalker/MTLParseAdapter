@@ -1,11 +1,10 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
+plugin 'slather'
 
 target 'MTLParseAdapter', :exclusive => true do
-  pod 'Asterism', '~> 1.0'
-  pod 'Mantle', '~> 1.5'
-  pod 'Parse', '~> 1.6'
-  
+  pod "MTLParseAdapter", :path => "../"
+
   pod 'Specta', :git => 'https://github.com/specta/specta.git', :tag => 'v0.3.0.beta1'
   pod 'Expecta'
 end

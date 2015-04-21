@@ -12,8 +12,6 @@
 #import <ParseOSX/PFConstants.h>
 #endif
 
-PF_ASSUME_NONNULL_BEGIN
-
 @class BFTask;
 
 /*!
@@ -42,7 +40,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns Returns the task encapsulating the work being done.
  */
-+ (BFTask *)trackAppOpenedWithLaunchOptions:(PF_NULLABLE NSDictionary *)launchOptions;
++ (BFTask *)trackAppOpenedWithLaunchOptions:(NSDictionary *)launchOptions;
 
 /*!
  @abstract Tracks this application being launched.
@@ -57,8 +55,7 @@ PF_ASSUME_NONNULL_BEGIN
  @param block The block to execute on server response.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  */
-+ (void)trackAppOpenedWithLaunchOptionsInBackground:(PF_NULLABLE NSDictionary *)launchOptions
-                                              block:(PF_NULLABLE PFBooleanResultBlock)block;
++ (void)trackAppOpenedWithLaunchOptionsInBackground:(NSDictionary *)launchOptions block:(PFBooleanResultBlock)block;
 
 /*!
  @abstract Tracks this application being launched. If this happened as the result of the
@@ -72,7 +69,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns Returns the task encapsulating the work being done.
  */
-+ (BFTask *)trackAppOpenedWithRemoteNotificationPayload:(PF_NULLABLE NSDictionary *)userInfo;
++ (BFTask *)trackAppOpenedWithRemoteNotificationPayload:(NSDictionary *)userInfo;
 
 /*!
  @abstract Tracks this application being launched. If this happened as the result of the
@@ -85,8 +82,8 @@ PF_ASSUME_NONNULL_BEGIN
  @param block The block to execute on server response.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  */
-+ (void)trackAppOpenedWithRemoteNotificationPayloadInBackground:(PF_NULLABLE NSDictionary *)userInfo
-                                                          block:(PF_NULLABLE PFBooleanResultBlock)block;
++ (void)trackAppOpenedWithRemoteNotificationPayloadInBackground:(NSDictionary *)userInfo
+                                                          block:(PFBooleanResultBlock)block;
 
 ///--------------------------------------
 /// @name Custom Analytics
@@ -112,7 +109,7 @@ PF_ASSUME_NONNULL_BEGIN
  @param block The block to execute on server response.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  */
-+ (void)trackEventInBackground:(NSString *)name block:(PF_NULLABLE PFBooleanResultBlock)block;
++ (void)trackEventInBackground:(NSString *)name block:(PFBooleanResultBlock)block;
 
 /*!
  @abstract Tracks the occurrence of a custom event with additional dimensions. Parse will
@@ -135,7 +132,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns Returns the task encapsulating the work being done.
  */
-+ (BFTask *)trackEvent:(NSString *)name dimensions:(PF_NULLABLE NSDictionary *)dimensions;
++ (BFTask *)trackEvent:(NSString *)name dimensions:(NSDictionary *)dimensions;
 
 /*!
  @abstract Tracks the occurrence of a custom event with additional dimensions. Parse will
@@ -158,10 +155,6 @@ PF_ASSUME_NONNULL_BEGIN
  @param block The block to execute on server response.
  It should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  */
-+ (void)trackEventInBackground:(NSString *)name
-                    dimensions:(PF_NULLABLE NSDictionary *)dimensions
-                         block:(PF_NULLABLE PFBooleanResultBlock)block;
++ (void)trackEventInBackground:(NSString *)name dimensions:(NSDictionary *)dimensions block:(PFBooleanResultBlock)block;
 
 @end
-
-PF_ASSUME_NONNULL_END

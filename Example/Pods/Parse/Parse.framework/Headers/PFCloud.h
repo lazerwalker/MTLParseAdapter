@@ -12,8 +12,6 @@
 #import <ParseOSX/PFConstants.h>
 #endif
 
-PF_ASSUME_NONNULL_BEGIN
-
 @class BFTask;
 
 /*!
@@ -29,7 +27,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The response from the cloud function.
  */
-+ (PF_NULLABLE_S id)callFunction:(NSString *)function withParameters:(PF_NULLABLE NSDictionary *)parameters;
++ (id)callFunction:(NSString *)function withParameters:(NSDictionary *)parameters;
 
 /*!
  @abstract Calls the given cloud function *synchronously* with the parameters provided and
@@ -42,9 +40,7 @@ PF_ASSUME_NONNULL_BEGIN
  @returns The response from the cloud function.
  This result could be a `NSDictionary`, an `NSArray`, `NSNumber` or `NSString`.
  */
-+ (PF_NULLABLE_S id)callFunction:(NSString *)function
-                  withParameters:(PF_NULLABLE NSDictionary *)parameters
-                           error:(NSError **)error;
++ (id)callFunction:(NSString *)function withParameters:(NSDictionary *)parameters error:(NSError **)error;
 
 /*!
  @abstract Calls the given cloud function *asynchronously* with the parameters provided.
@@ -54,8 +50,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The task, that encapsulates the work being done.
  */
-+ (BFTask *)callFunctionInBackground:(NSString *)function
-                      withParameters:(PF_NULLABLE NSDictionary *)parameters;
++ (BFTask *)callFunctionInBackground:(NSString *)function withParameters:(NSDictionary *)parameters;
 
 /*!
  @abstract Calls the given cloud function *asynchronously* with the parameters provided
@@ -67,8 +62,8 @@ PF_ASSUME_NONNULL_BEGIN
  It should have the following argument signature: `^(id result, NSError *error)`.
  */
 + (void)callFunctionInBackground:(NSString *)function
-                  withParameters:(PF_NULLABLE NSDictionary *)parameters
-                           block:(PF_NULLABLE PFIdResultBlock)block;
+                  withParameters:(NSDictionary *)parameters
+                           block:(PFIdResultBlock)block;
 
 /*
  @abstract Calls the given cloud function *asynchronously* with the parameters provided
@@ -82,10 +77,8 @@ PF_ASSUME_NONNULL_BEGIN
  Result will be `nil` if error is set and vice versa.
  */
 + (void)callFunctionInBackground:(NSString *)function
-                  withParameters:(PF_NULLABLE NSDictionary *)parameters
-                          target:(PF_NULLABLE_S id)target
-                        selector:(PF_NULLABLE_S SEL)selector;
+                  withParameters:(NSDictionary *)parameters
+                          target:(id)target
+                        selector:(SEL)selector;
 
 @end
-
-PF_ASSUME_NONNULL_END

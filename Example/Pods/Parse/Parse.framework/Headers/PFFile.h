@@ -12,8 +12,6 @@
 #import <ParseOSX/PFConstants.h>
 #endif
 
-PF_ASSUME_NONNULL_BEGIN
-
 @class BFTask;
 
 /*!
@@ -45,7 +43,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile` object.
  */
-+ (instancetype)fileWithName:(PF_NULLABLE NSString *)name data:(NSData *)data;
++ (instancetype)fileWithName:(NSString *)name data:(NSData *)data;
 
 /*!
  @abstract Creates a file with the contents of another file.
@@ -55,7 +53,7 @@ PF_ASSUME_NONNULL_BEGIN
  spaces, underscores, or dashes.
  @param path The path to the file that will be uploaded to Parse.
  */
-+ (instancetype)fileWithName:(PF_NULLABLE NSString *)name
++ (instancetype)fileWithName:(NSString *)name
               contentsAtPath:(NSString *)path;
 
 /*!
@@ -69,9 +67,9 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile` object.
  */
-+ (instancetype)fileWithName:(PF_NULLABLE NSString *)name
++ (instancetype)fileWithName:(NSString *)name
                         data:(NSData *)data
-                 contentType:(PF_NULLABLE NSString *)contentType;
+                 contentType:(NSString *)contentType;
 
 /*!
  @abstract Creates a file with given data and content type.
@@ -81,7 +79,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A new `PFFile` object.
  */
-+ (instancetype)fileWithData:(NSData *)data contentType:(PF_NULLABLE NSString *)contentType;
++ (instancetype)fileWithData:(NSData *)data contentType:(NSString *)contentType;
 
 /*!
  @abstract The name of the file.
@@ -95,7 +93,7 @@ PF_ASSUME_NONNULL_BEGIN
 /*!
  @abstract The url of the file.
  */
-@property (PF_NULLABLE_PROPERTY nonatomic, copy, readonly) NSString *url;
+@property (nonatomic, copy, readonly) NSString *url;
 
 ///--------------------------------------
 /// @name Storing Data with Parse
@@ -134,7 +132,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @param block The block should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
-- (void)saveInBackgroundWithBlock:(PF_NULLABLE PFBooleanResultBlock)block;
+- (void)saveInBackgroundWithBlock:(PFBooleanResultBlock)block;
 
 /*!
  @abstract Saves the file *asynchronously* and executes the given block.
@@ -145,8 +143,8 @@ PF_ASSUME_NONNULL_BEGIN
  @param block The block should have the following argument signature: `^(BOOL succeeded, NSError *error)`
  @param progressBlock The block should have the following argument signature: `^(int percentDone)`
  */
-- (void)saveInBackgroundWithBlock:(PF_NULLABLE PFBooleanResultBlock)block
-                    progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
+- (void)saveInBackgroundWithBlock:(PFBooleanResultBlock)block
+                    progressBlock:(PFProgressBlock)progressBlock;
 
 /*
  @abstract Saves the file *asynchronously* and calls the given callback.
@@ -157,7 +155,7 @@ PF_ASSUME_NONNULL_BEGIN
  `error` will be `nil` on success and set if there was an error.
  `[result boolValue]` will tell you whether the call succeeded or not.
  */
-- (void)saveInBackgroundWithTarget:(PF_NULLABLE_S id)target selector:(PF_NULLABLE_S SEL)selector;
+- (void)saveInBackgroundWithTarget:(id)target selector:(SEL)selector;
 
 ///--------------------------------------
 /// @name Getting Data from Parse
@@ -173,7 +171,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The `NSData` object containing file data. Returns `nil` if there was an error in fetching.
  */
-- (PF_NULLABLE NSData *)getData;
+- (NSData *)getData;
 
 /*!
  @abstract This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
@@ -182,7 +180,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns A stream containing the data. Returns `nil` if there was an error in fetching.
  */
-- (PF_NULLABLE NSInputStream *)getDataStream;
+- (NSInputStream *)getDataStream;
 
 /*!
  @abstract *Synchronously* gets the data from cache if available or fetches its contents from the network.
@@ -192,7 +190,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @returns The `NSData` object containing file data. Returns `nil` if there was an error in fetching.
  */
-- (PF_NULLABLE NSData *)getData:(NSError **)error;
+- (NSData *)getData:(NSError **)error;
 
 /*!
  @abstract This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
@@ -202,7 +200,7 @@ PF_ASSUME_NONNULL_BEGIN
  @returns A stream containing the data. Returns nil if there was an error in
  fetching.
  */
-- (PF_NULLABLE NSInputStream *)getDataStream:(NSError **)error;
+- (NSInputStream *)getDataStream:(NSError **)error;
 
 /*!
  @abstract This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
@@ -230,7 +228,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @param block The block should have the following argument signature: `^(NSData *result, NSError *error)`
  */
-- (void)getDataInBackgroundWithBlock:(PF_NULLABLE PFDataResultBlock)block;
+- (void)getDataInBackgroundWithBlock:(PFDataResultBlock)block;
 
 /*!
  @abstract This method is like <getDataInBackgroundWithBlock:> but avoids
@@ -240,7 +238,7 @@ PF_ASSUME_NONNULL_BEGIN
 
  @param block The block should have the following argument signature: `(NSInputStream *result, NSError *error)`
  */
-- (void)getDataStreamInBackgroundWithBlock:(PF_NULLABLE PFDataStreamResultBlock)block;
+- (void)getDataStreamInBackgroundWithBlock:(PFDataStreamResultBlock)block;
 
 /*!
  @abstract *Asynchronously* gets the data from cache if available or fetches its contents from the network.
@@ -251,8 +249,8 @@ PF_ASSUME_NONNULL_BEGIN
  @param resultBlock The block should have the following argument signature: (NSData *result, NSError *error)
  @param progressBlock The block should have the following argument signature: (int percentDone)
  */
-- (void)getDataInBackgroundWithBlock:(PF_NULLABLE PFDataResultBlock)resultBlock
-                       progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
+- (void)getDataInBackgroundWithBlock:(PFDataResultBlock)resultBlock
+                       progressBlock:(PFProgressBlock)progressBlock;
 
 /*!
  @abstract This method is like <getDataInBackgroundWithBlock:progressBlock:> but avoids
@@ -263,8 +261,8 @@ PF_ASSUME_NONNULL_BEGIN
  @param resultBlock The block should have the following argument signature: `^(NSInputStream *result, NSError *error)`.
  @param progressBlock The block should have the following argument signature: `^(int percentDone)`.
  */
-- (void)getDataStreamInBackgroundWithBlock:(PF_NULLABLE PFDataStreamResultBlock)resultBlock
-                             progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
+- (void)getDataStreamInBackgroundWithBlock:(PFDataStreamResultBlock)resultBlock
+                             progressBlock:(PFProgressBlock)progressBlock;
 
 /*
  @abstract *Asynchronously* gets the data from cache if available or fetches its contents from the network.
@@ -274,7 +272,7 @@ PF_ASSUME_NONNULL_BEGIN
  It should have the following signature: `(void)callbackWithResult:(NSData *)result error:(NSError *)error`.
  `error` will be `nil` on success and set if there was an error.
  */
-- (void)getDataInBackgroundWithTarget:(PF_NULLABLE_S id)target selector:(PF_NULLABLE_S SEL)selector;
+- (void)getDataInBackgroundWithTarget:(id)target selector:(SEL)selector;
 
 ///--------------------------------------
 /// @name Interrupting a Transfer
@@ -286,5 +284,3 @@ PF_ASSUME_NONNULL_BEGIN
 - (void)cancel;
 
 @end
-
-PF_ASSUME_NONNULL_END
