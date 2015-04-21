@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Mike Walker. All rights reserved.
 //
 
-#import <MTLParseAdapter/MTLParseAdapter.h>
+#import "MTLParseAdapter.h"
 
 #import "TestObject.h"
 

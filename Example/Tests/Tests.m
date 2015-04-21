@@ -1,4 +1,4 @@
-#import <MTLParseAdapter/MTLParseAdapter.h>
+#import "MTLParseAdapter.h"
 #import <Parse/Parse.h>
 
 #import "TestObject.h"

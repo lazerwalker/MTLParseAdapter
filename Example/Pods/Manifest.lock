@@ -1,26 +1,22 @@
 PODS:
   - Asterism (1.0.0)
-  - Bolts (1.1.3)
+  - Bolts (1.1.4)
   - Expecta (0.3.1)
   - Mantle (1.5.4):
     - Mantle/extobjc (= 1.5.4)
   - Mantle/extobjc (1.5.4)
-  - MTLParseAdapter (0.1.0):
-    - Asterism (~> 1.0)
-    - Mantle (~> 1.5)
-    - Parse (~> 1.6)
-  - Parse (1.6.2):
+  - Parse (1.7.1):
     - Bolts (~> 1.1)
   - Specta (0.3.0.beta1)
 
 DEPENDENCIES:
+  - Asterism (~> 1.0)
   - Expecta
-  - MTLParseAdapter (from `../`)
+  - Mantle (~> 1.5)
+  - Parse (~> 1.6)
   - Specta (from `https://github.com/specta/specta.git`, tag `v0.3.0.beta1`)
 
 EXTERNAL SOURCES:
-  MTLParseAdapter:
-    :path: ../
   Specta:
     :git: https://github.com/specta/specta.git
     :tag: v0.3.0.beta1
@@ -31,12 +27,11 @@ CHECKOUT OPTIONS:
     :tag: v0.3.0.beta1
 
 SPEC CHECKSUMS:
-  Asterism: 26783427dc5b3ff144cbabb87485456458797350
-  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
-  Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
-  MTLParseAdapter: 41ffffca5b3364b443430cad2dc19a6bf7783146
-  Parse: 60d65108fe39da77ec16c9e51d74b4d296b21424
-  Specta: 63e8ac8e07db6675c7096d37f77a266a1be4c02d
+  Asterism: b2992aaf4ac2dbc66c3aea3a6412c67e3e689835
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
+  Expecta: a354d4633409dd9fe8c4f5ff5130426adbe31628
+  Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
+  Parse: fa8ec29de6d82035635986c11946299fb1b38316
+  Specta: d2158a483ad179e5f8d3a29f75ff4fc0ff6fab16
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.4
